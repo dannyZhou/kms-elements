@@ -40,6 +40,9 @@ public:
 
   virtual ~CompositeImpl () {};
 
+  virtual void setVideosLocation (const
+                                  std::vector<std::shared_ptr<VideoLocation>> &videosLocation);
+
   /* Next methods are automatically implemented by code generator */
   virtual bool connect (const std::string &eventType,
                         std::shared_ptr<EventHandler> handler);

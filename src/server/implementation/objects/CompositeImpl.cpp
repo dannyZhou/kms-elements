@@ -21,6 +21,8 @@
 #include <jsonrpc/JsonSerializer.hpp>
 #include <KurentoException.hpp>
 #include <gst/gst.h>
+#include "kmscompositemixer.h"
+#include "VideoLocation.hpp"
 
 #define GST_CAT_DEFAULT kurento_composite_impl
 GST_DEBUG_CATEGORY_STATIC (GST_CAT_DEFAULT);
@@ -42,6 +44,31 @@ CompositeImplFactory::createObject (const boost::property_tree::ptree &conf,
                                     std::shared_ptr<MediaPipeline> mediaPipeline) const
 {
   return new CompositeImpl (conf, mediaPipeline);
+}
+
+void CompositeImpl::setVideosLocation (const
+                                       std::vector<std::shared_ptr<VideoLocation>> &videosLocation)
+{
+  // TODO
+  GArray *kmsLocations;
+  kmsLocations = g_array_sized_new (FALSE, FALSE,
+                                    sizeof (KmsCompositeVideoLocation), videosLocation.size() );
+
+  for (const std::shared_ptr<VideoLocation> &location_ptr : videosLocation) {
+    KmsCompositeVideoLocation kmsLocation;
+    VideoLocation *location = location_ptr.get();
+
+    kmsLocation.top = location->getTop();
+    kmsLocation.left = location->getLeft();
+    kmsLocation.height = location->getHeight();
+    kmsLocation.width = location->getWidth();
+    kmsLocation.handlerId = location->getHandlerId();
+
+    g_array_append_val (kmsLocations, kmsLocation);
+  }
+
+  // check memory leak
+  g_signal_emit_by_name (element, "set-videos-location", kmsLocations);
 }
 
 CompositeImpl::StaticConstructor CompositeImpl::staticConstructor;

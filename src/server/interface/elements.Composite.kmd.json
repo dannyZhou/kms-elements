@@ -4,17 +4,63 @@
       "name": "Composite",
       "extends": "Hub",
       "doc": "A :rom:cls:`Hub` that mixes the :rom:attr:`MediaType.AUDIO` stream of its connected sources and constructs a grid with the :rom:attr:`MediaType.VIDEO` streams of its connected sources into its sink",
-      "constructor":
+      "constructor": {
+        "doc": "Create for the given pipeline",
+        "params": [
+          {
+            "name": "mediaPipeline",
+            "doc": "the :rom:cls:`MediaPipeline` to which the dispatcher belongs",
+            "type": "MediaPipeline"
+          }
+        ]
+      },
+      "methods": [
         {
-          "doc": "Create for the given pipeline",
           "params": [
             {
-              "name": "mediaPipeline",
-              "doc": "the :rom:cls:`MediaPipeline` to which the dispatcher belongs",
-              "type": "MediaPipeline"
+              "name": "videosLocation",
+              "doc": "videos location of composite",
+              "type": "VideoLocation[]"
             }
-          ]
+          ],
+          "name": "setVideosLocation",
+          "doc": "Set videos location"
         }
+      ]
+    }
+  ],
+  "complexTypes": [
+    {
+      "name": "VideoLocation",
+      "doc": "Video location and size of kms composite",
+      "typeFormat": "REGISTER",
+      "properties": [
+        {
+          "name": "top",
+          "doc": "location top",
+          "type" : "int"
+        },
+        {
+          "name": "left",
+          "doc": "location left",
+          "type" : "int"
+        },
+        {
+          "name": "width",
+          "doc": "video width",
+          "type" : "int"
+        },
+        {
+          "name": "height",
+          "doc": "video height",
+          "type" : "int"
+        },
+        {
+          "name": "handlerId",
+          "doc": "video handle id",
+          "type" : "int"
+        }
+      ]
     }
   ]
 }

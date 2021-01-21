@@ -1,3 +1,9 @@
+kms-elements (6.15.2-0kurento1) testing; urgency=medium
+
+  * add api of set video size and location of composite
+
+ -- Danny Zhou <dannybook@126.com>  Fri, 26 Feb 2021 10:16:33 +0800
+
 kms-elements (6.15.0-0kurento1) testing; urgency=medium
 
   * Prepare release 6.15.0-0kurento1
@@ -5,7 +11,7 @@ kms-elements (6.15.0-0kurento1) testing; urgency=medium
 
  -- Juan Navarro <juan.navarro@gmx.es>  Tue, 03 Nov 2020 18:04:22 +0100
 
-kms-elements (6.14.0-0kurento1) testing; urgency=medium
+kms-elements (6.14.0-0kurento1) testing:; urgency=medium
 
   * Prepare release 6.14.0-0kurento1
 

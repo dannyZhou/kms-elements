@@ -56,6 +56,7 @@ G_BEGIN_DECLS
 typedef struct _KmsCompositeMixer KmsCompositeMixer;
 typedef struct _KmsCompositeMixerClass KmsCompositeMixerClass;
 typedef struct _KmsCompositeMixerPrivate KmsCompositeMixerPrivate;
+typedef struct _KmsCompositeVideoLocation KmsCompositeVideoLocation;
 
 struct _KmsCompositeMixer
 {
@@ -68,6 +69,17 @@ struct _KmsCompositeMixer
 struct _KmsCompositeMixerClass
 {
   KmsBaseHubClass parent_class;
+
+  void (*set_videos_location) (gpointer data, GArray * videosLocation);
+};
+
+struct _KmsCompositeVideoLocation
+{
+  gint top;
+  gint left;
+  gint width;
+  gint height;
+  gint handlerId;
 };
 
 GType kms_composite_mixer_get_type (void);
